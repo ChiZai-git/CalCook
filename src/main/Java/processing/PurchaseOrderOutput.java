@@ -17,7 +17,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class PurchaseOrderOutput {
-	public PurchaseOrderOutput() {
+	public void PurchaseOrder() {
 		// ワークブック
 		XSSFWorkbook workBook = null;
 		// シート
@@ -130,12 +130,13 @@ public class PurchaseOrderOutput {
 				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
 
 				//ファイルパス・ファイル名の指定
-				outPutFilePath = "C:\\Users\\akihiro.komatsu\\Desktop\\";
-				outPutFileName = "kuku_" + dateFormat.format(date).toString() + ".xlsx";
+				outPutFilePath = System.getProperty("user.home") + "/Desktop/";
+				outPutFileName = dateFormat.format(date).toString() + "_発注書.xlsx";
 
 				// エクセルファイルを出力
 				outPutFile = new FileOutputStream(outPutFilePath + outPutFileName);
 				workBook.write(outPutFile);
+				workBook.close();
 
 				System.out.println("「" + outPutFilePath + outPutFileName + "」を出力しました。");
 

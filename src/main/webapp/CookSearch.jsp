@@ -57,10 +57,10 @@
         if (ingredientDispInfoList != null || ingredientDispInfoList.size() == 0) {
           for (int i = 0; i < ingredientDispInfoList.size(); i++) {
             out.write("<tr>");
-            out.write("<td><label for=\"cookName" + i + "\">" + (i + 1) + "</label></td>");
+            out.write("<td class=\"center\"><label for=\"cookName" + i + "\">" + (i + 1) + "</label></td>");
             out.write("<td><label for=\"cookName" + i + "\">" + ingredientDispInfoList.get(i).getMenuName() + "</label></td>");
             out.write("<td><label for=\"cookName" + i + "\">" + ingredientDispInfoList.get(i).getIngredientDisps() + "</label></td>");
-            out.write("<td><input onclick=\"SelectDisp1('" + i + "')\" id = \"cookName" + i + "\" type=\"radio\" name=\"cookName\" value=\""
+            out.write("<td class=\"center\"><input onclick=\"SelectDisp1('" + i + "')\" id = \"cookName" + i + "\" type=\"radio\" name=\"cookName\" value=\""
               + ingredientDispInfoList.get(i).getMenuName() + "\"></td>");
             out.write("</tr>");
           }

@@ -38,6 +38,7 @@ public class Main extends HttpServlet {
 		if(view.equals("home")) {
 
 			request.getRequestDispatcher("TopMenu.jsp").forward(request, response);
+			return;
 
 		} else if (view.equals("CookInfoInput")){
 

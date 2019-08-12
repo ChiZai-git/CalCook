@@ -24,7 +24,8 @@
       <input class="Return" type="submit" name="calculate" value="＜ 戻る">
     </form>
     <h3 class="title">料理名・人数入力画面</h3>
-    <p>説明：~~~~~</p>
+    <p>説明：登録してあるプロジェクト、料理名、人数を選択してください。<br>
+    　　　「計算する」を押すと自動で人数分の分量が計算されます。</p>
     <hr>
     <form method="post" action="CookInfo">
       <fieldset class="CookInfo-field">
@@ -32,7 +33,7 @@
           <div id="right">
             <input class="next-btn" type="submit" name="calculate" value="計算する ＞">
           </div>
-          <hr>
+          <hr class="clear">
             <%
               if (!(errMsg.isEmpty()) && errMsg != null){
                 out.write("<div class=\"alert\">");
@@ -58,21 +59,20 @@
             %>
             </select>
           </p>
-
           <div class="parent-block">
-            <label for="cookName">料理名</label>
+            <label class="float" for="cookName">料理名</label>
               <%
                 if (cookName.equals("") || cookName == null){
                   out.write("");
                 } else {
-                  out.write("<span>" + cookName + "</span>");
+                  out.write("<span class=\"float\">" + cookName + "</span>");
                   out.write("<input type=\"hidden\" name=\"cookName\" value=\"" + cookName + "\">");
                 }
               %>
             <input class="search-btn" type="submit" name="search" value="料理を探す ＞">
           </div>
           <p>
-        <label for = "member">人数</label>
+        <label class="clear" for = "member">人数</label>
         <% out.write("<input type=\"number\" name=\"member\" value=\"" + member + "\" min=\"0\">");%>
       </p>
     </fieldset>

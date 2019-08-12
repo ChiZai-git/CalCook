@@ -17,6 +17,7 @@
 <script type="text/javascript" src="ProjectMenuChenge.js"></script>
 <link rel="stylesheet" href="header_footer.css">
 <link rel="stylesheet" href="MainStyle.css">
+  <link rel="stylesheet" href="TableStyle.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>PJ調理材料詳細画面</title>
 </head>
@@ -72,8 +73,6 @@
         }
       %>
     </table>
-    <hr>
-
     <%
       for (int i = 0; i < menuInfoList.size(); i++) {
         out.write("<form method=\"post\" action=\"ProjectCookEdit\">");
@@ -84,7 +83,7 @@
         out.write("<h4>" + menuInfoList.get(i).getMenuname() + "</h4>");
         out.write("<h5>" + eatMemberList.get(i) + "人前</h5>");
         out.write("<input type=\"hidden\" name=\"dispMenuid\" value=\"" + menuInfoList.get(i).getMenuid() + "\">");
-        out.write("<input type=\"submit\" name=\"edit\" value=\"情報編集\">");
+        out.write("<input class=\"next-btn3\" type=\"submit\" name=\"edit\" value=\"情報編集\">");
 
         out.write("<div style=\"width:300px;height:200px;overflow:auto;\">");
         out.write("<table>");
@@ -109,7 +108,7 @@
   </div>
   <form method="post" action="ProjectCookEdit">
     <input type="hidden" name="view" value="Purchase">
-    <input type="submit" name="" value="発注書出力">
+    <input class="next-btn2" type="submit" name="" value="発注書出力">
   </form>
   <%@include file="_footer.jsp"%>
 </body>

@@ -115,6 +115,7 @@ public class CookSearch extends HttpServlet {
 				request.setAttribute("ingredientName", ingredientName);
 				request.setAttribute("errMsg", errMsg);
 				request.getRequestDispatcher("CookSearch.jsp").forward(request, response);
+				return;
 			}
 			errMsg = "";
 			ArrayList<String> projectnames = new ArrayList<>();

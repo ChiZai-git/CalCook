@@ -24,6 +24,7 @@
 </script>
 <link rel="stylesheet" href="header_footer.css">
 <link rel="stylesheet" href="MainStyle.css">
+  <link rel="stylesheet" href="TableStyle.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>発注書編集画面</title>
 </head>
@@ -63,7 +64,6 @@
         }
       %>
     </table>
-    <hr>
     <%
       if (!(errMsg.isEmpty()) && errMsg != null){
         out.write("<div class=\"alert\">");

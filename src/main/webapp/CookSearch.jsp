@@ -11,8 +11,10 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+  <script type="text/javascript" src="SelectDisp.js"></script>
   <link rel="stylesheet" href="header_footer.css">
   <link rel="stylesheet" href="MainStyle.css">
+  <link rel="stylesheet" href="TableStyle.css">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>料理検索画面</title>
 </head>
@@ -55,17 +57,16 @@
         if (ingredientDispInfoList != null || ingredientDispInfoList.size() == 0) {
           for (int i = 0; i < ingredientDispInfoList.size(); i++) {
             out.write("<tr>");
-            out.write("<td>" + (i + 1) + "</td>");
-            out.write("<td>" + ingredientDispInfoList.get(i).getMenuName() + "</td>");
-            out.write("<td>" + ingredientDispInfoList.get(i).getIngredientDisps() + "</td>");
-            out.write("<td><input type=\"radio\" name=\"cookName\" value=\""
+            out.write("<td><label for=\"cookName" + i + "\">" + (i + 1) + "</label></td>");
+            out.write("<td><label for=\"cookName" + i + "\">" + ingredientDispInfoList.get(i).getMenuName() + "</label></td>");
+            out.write("<td><label for=\"cookName" + i + "\">" + ingredientDispInfoList.get(i).getIngredientDisps() + "</label></td>");
+            out.write("<td><input onclick=\"SelectDisp1('" + i + "')\" id = \"cookName" + i + "\" type=\"radio\" name=\"cookName\" value=\""
               + ingredientDispInfoList.get(i).getMenuName() + "\"></td>");
             out.write("</tr>");
           }
         }
       %>
     </table>
-    <hr>
     <%
       if (!(errMsg.isEmpty()) && errMsg != null){
         out.write("<div class=\"alert\">");
@@ -73,7 +74,17 @@
         out.write("</div>");
       }
     %>
-  <input type="submit" name="decision" value="決定">
+    <h4 class="float">選択した料理：</h4>
+    <%
+      for(int i = 0; i < ingredientDispInfoList.size(); i++){
+        out.write("<div style=\"display:none\" class=\"cooks\">");
+        out.write("<h3 class=\"float\">" + ingredientDispInfoList.get(i).getMenuName() + "</h3>");
+        out.write("</div>");
+      }
+    %>
+  <div class="clear">
+    <input class="next-btn2" type="submit" name="decision" value="決定">
+  </div>
   </form>
 </div>
 <%@ include file="_footer.jsp" %>

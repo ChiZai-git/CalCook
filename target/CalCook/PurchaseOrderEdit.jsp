@@ -71,7 +71,7 @@
         out.write("</div>");
       }
     %>
-    <form method="post" action="PurchaseOrder">
+    <form method="post" action="PurchaceOrder">
       <table>
         <tr>
           <td>Check!</td>

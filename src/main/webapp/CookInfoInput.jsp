@@ -1,8 +1,8 @@
 <!-- 画面ID：k01g01	料理名・人数入力画面 -->
 <!-- 初期構築：2019/07/15 ChiZai Tagawa Yuji -->
 
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page import="java.util.ArrayList"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="java.util.ArrayList" %>
 <% String projectName = (String)session.getAttribute("projectName"); %>
 <% String cookName = (String)request.getAttribute("cookName"); %>
 <% int member = (int)session.getAttribute("member"); %>
@@ -24,8 +24,8 @@
       <input class="Return" type="submit" name="calculate" value="＜ 戻る">
     </form>
     <h3 class="title">料理名・人数入力画面</h3>
-    <p>説明：登録してあるプロジェクト、料理名、人数を選択してください。<br>
-    　　　「計算する」を押すと自動で人数分の分量が計算されます。</p>
+    <p>登録してあるプロジェクト、料理名、人数を選択してください。<br>
+    「計算する」を押すと自動で人数分の分量が計算されます。</p>
     <hr>
     <form method="post" action="CookInfo">
       <fieldset class="CookInfo-field">
@@ -41,8 +41,8 @@
                 out.write("</div>");
               }
             %>
-          <p>
-            <label for = "projectName">プロジェクト名</label>
+          <div class="cookInfo-project">
+            <label class="projectName" for = "projectName">プロジェクト名</label>
             <select name = "projectName">
             <%
               if(projectName == "" || projectName == null){
@@ -58,23 +58,25 @@
               }
             %>
             </select>
-          </p>
-          <div class="parent-block">
-            <label class="float" for="cookName">料理名</label>
+          </div>
+          <div class="cookInfo-menu">
+            <label class="menuName" for="cookName">料理名</label>
               <%
                 if (cookName.equals("") || cookName == null){
                   out.write("");
+                  out.write("<input type=\"hidden\" name=\"cookName\" value=\"null\">");
+                  out.write("<input type=\"hidden\" name=\"ingredientName\" value=\"null\">");
                 } else {
-                  out.write("<span class=\"float\">" + cookName + "</span>");
+                  out.write("<span class=\"menuName\">" + cookName + "</span>");
                   out.write("<input type=\"hidden\" name=\"cookName\" value=\"" + cookName + "\">");
                 }
               %>
             <input class="search-btn" type="submit" name="search" value="料理を探す ＞">
           </div>
-          <p>
-        <label class="clear" for = "member">人数</label>
-        <% out.write("<input type=\"number\" name=\"member\" value=\"" + member + "\" min=\"0\">");%>
-      </p>
+          <div class="cookInfo-people">
+            <label class="people" for = "member">人数</label>
+            <% out.write("<input type=\"number\" name=\"member\" value=\"" + member + "\" min=\"0\">");%>
+          </div>
     </fieldset>
   </form>
 </div>

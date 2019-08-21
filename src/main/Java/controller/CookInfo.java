@@ -10,10 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dto.IngredientDispInfo;
+import dto.MenuInfo;
 import dto.MenuIngredientInfo;
 import model.MenuData;
 import model.MenuIngredientData;
 import model.ProjectData;
+import processing.IngredientProcDisp;
 
 /**
  * Servlet implementation class CookInfo
@@ -57,10 +59,19 @@ public class CookInfo extends HttpServlet {
 			String errMsg = "";
 			String ingredientName = "";
 			ArrayList<IngredientDispInfo> ingredientDispInfoList = new ArrayList<>();
+			ArrayList<MenuInfo> menuInfoList = new ArrayList<>();
+			IngredientProcDisp ingredientProcDisp = new IngredientProcDisp();
+
+			MenuData menudata = new MenuData();
+			menuInfoList = menudata.AllMenuSelect();
+
+			for(int i = 0; i < menuInfoList.size(); i++) {
+				ingredientDispInfoList.add(ingredientProcDisp.IngredientNameProc(menuInfoList.get(i)));
+			}
 
 			session.setAttribute("projectName", projectName);
 			session.setAttribute("member", member);
-			request.setAttribute("ingredientDispInfoList", ingredientDispInfoList);
+			session.setAttribute("ingredientDispInfoList", ingredientDispInfoList);
 			request.setAttribute("cookName", cookName);
 			request.setAttribute("ingredientName", ingredientName);
 			request.setAttribute("errMsg", errMsg);

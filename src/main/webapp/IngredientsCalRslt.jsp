@@ -2,8 +2,8 @@
 <!-- 初期構築：2019/07/15 ChiZai Tagawa Yuji -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="dto.MenuIngredientInfo"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="dto.MenuIngredientInfo"%>
 <% String projectName = (String)request.getAttribute("projectName"); %>
 <% String cookName = (String)request.getAttribute("cookName"); %>
 <% int member = (int)request.getAttribute("member"); %>

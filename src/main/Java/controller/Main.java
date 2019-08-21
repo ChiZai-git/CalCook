@@ -37,6 +37,8 @@ public class Main extends HttpServlet {
 		String view = request.getParameter("view");
 		if(view.equals("home")) {
 
+			session.invalidate();
+
 			request.getRequestDispatcher("TopMenu.jsp").forward(request, response);
 			return;
 

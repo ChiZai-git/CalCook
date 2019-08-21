@@ -1,12 +1,12 @@
 <!-- 画面ID：k02g04	発注書編集画面 -->
 <!-- 初期構築：2019/07/31 ChiZai Tagawa Yuji -->
 
-<%@page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="dto.ProjectInfo"%>
-<%@page import="dto.MenuInfo"%>
-<%@page import="dto.ProjectCookDisp"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="dto.ProjectInfo" %>
+<%@ page import="dto.MenuInfo" %>
+<%@ page import="dto.ProjectCookDisp" %>
 <% ProjectInfo projectInfo = (ProjectInfo) session.getAttribute("projectInfo");%>
 <% ArrayList<ProjectCookDisp> projectCookDispList = (ArrayList<ProjectCookDisp>) session.getAttribute("projectCookDispList");%>
 <% String errMsg = (String)request.getAttribute("errMsg"); %>
@@ -103,7 +103,7 @@
           }
         %>
       </table>
-      <input type="submit" name="output" value="出力する">
+      <input class="next-btn2" type="submit" name="output" value="出力する">
     </form>
   </div>
   <%@include file="_footer.jsp"%>

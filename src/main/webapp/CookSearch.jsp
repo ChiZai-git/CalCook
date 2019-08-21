@@ -7,7 +7,7 @@
 <% String errMsg = (String)request.getAttribute("errMsg"); %>
 <% String ingredientName = (String)request.getAttribute("ingredientName"); %>
 <% ArrayList<IngredientDispInfo> ingredientDispInfoList
-			= (ArrayList<IngredientDispInfo>) request.getAttribute("ingredientDispInfoList");%>
+			= (ArrayList<IngredientDispInfo>) session.getAttribute("ingredientDispInfoList");%>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -69,6 +69,7 @@
     </table>
     <%
       if (!(errMsg.isEmpty()) && errMsg != null){
+        out.write("<br>");
         out.write("<div class=\"alert\">");
         out.write(errMsg);
         out.write("</div>");
@@ -83,7 +84,7 @@
       }
     %>
   <div class="clear">
-    <input class="next-btn2" type="submit" name="decision" value="決定">
+    <input class="next-btn2" type="submit" name="decision" value="選択する">
   </div>
   </form>
 </div>

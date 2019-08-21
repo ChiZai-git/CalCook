@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dto.IngredientDispInfo;
 import dto.MenuInfo;
@@ -36,6 +37,7 @@ public class CookSearch extends HttpServlet {
 
 		request.setCharacterEncoding("UTF-8");
 
+		HttpSession session = request.getSession();
 		String cookName = request.getParameter("cookName");
 		String ingredientName = request.getParameter("ingredientName");
 		String decision = request.getParameter("decision");
@@ -80,7 +82,7 @@ public class CookSearch extends HttpServlet {
 				}
 			}
 
-			request.setAttribute("ingredientDispInfoList", ingredientDispInfoList);
+			session.setAttribute("ingredientDispInfoList", ingredientDispInfoList);
 			request.setAttribute("cookName", cookName);
 			request.setAttribute("ingredientName", ingredientName);
 			request.setAttribute("errMsg", errMsg);
@@ -98,6 +100,9 @@ public class CookSearch extends HttpServlet {
 					cookName = "";
 				}
 				errMsg = "";
+
+				session.removeAttribute("ingredientDispInfoList");
+
 				request.setAttribute("cookName", cookName);
 				request.setAttribute("errMsg", errMsg);
 				request.setAttribute("projectnames", projectnames);
@@ -105,12 +110,10 @@ public class CookSearch extends HttpServlet {
 				return;
 
 			} else if(cookName == null || cookName.equals("")) {
-				ArrayList<IngredientDispInfo> ingredientDispInfoList = new ArrayList<>();
 				errMsg = "料理が選択されていません。リストにチェックを入れてください。";
 				cookName = "";
 				ingredientName = "";
 
-				request.setAttribute("ingredientDispInfoList", ingredientDispInfoList);
 				request.setAttribute("cookName", cookName);
 				request.setAttribute("ingredientName", ingredientName);
 				request.setAttribute("errMsg", errMsg);
@@ -121,6 +124,8 @@ public class CookSearch extends HttpServlet {
 			ArrayList<String> projectnames = new ArrayList<>();
 			ProjectData projects = new ProjectData();
 			projectnames = projects.ProjectNameselect();
+
+			session.removeAttribute("ingredientDispInfoList");
 
 			request.setAttribute("cookName", cookName);
 			request.setAttribute("errMsg", errMsg);

@@ -69,6 +69,15 @@ public class NewProject extends HttpServlet {
 
 			// プロジェクトID採番
 			int id = projectData.ProjectIdselect();
+
+			if (startday.equals("")) {
+				startday = "2000-01-01";
+			}
+
+			if (endday.equals("")) {
+				endday = "2000-01-01";
+			}
+
 			// プロジェクト情報
 			ProjectInfo projectInfo = new ProjectInfo(id, projectname, member, startday, endday);
 

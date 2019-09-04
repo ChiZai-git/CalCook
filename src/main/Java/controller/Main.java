@@ -83,11 +83,7 @@ public class Main extends HttpServlet {
 		} else if (view.equals("NewProject")) {
 			String errMsg = "";
 			int member = 0;
-			String startday = "";
-			String endday = "";
 			request.setAttribute("member", member);
-			request.setAttribute("startday", startday);
-			request.setAttribute("endday", endday);
 			request.setAttribute("errMsg", errMsg);
 
 			request.getRequestDispatcher("NewProject.jsp").forward(request, response);

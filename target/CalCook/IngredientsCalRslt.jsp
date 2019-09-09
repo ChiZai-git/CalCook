@@ -2,8 +2,8 @@
 <!-- 初期構築：2019/07/15 ChiZai Tagawa Yuji -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="dto.MenuIngredientInfo"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="dto.MenuIngredientInfo"%>
 <% String projectName = (String)request.getAttribute("projectName"); %>
 <% String cookName = (String)request.getAttribute("cookName"); %>
 <% int member = (int)request.getAttribute("member"); %>
@@ -16,6 +16,7 @@
 <head>
   <link rel="stylesheet" href="header_footer.css">
   <link rel="stylesheet" href="MainStyle.css">
+  <link rel="stylesheet" href="TableStyle.css">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>分量計算画面</title>
 </head>
@@ -57,7 +58,6 @@
           }
          %>
       </table>
-      <hr>
     <%
       if (!(errMsg.isEmpty()) && errMsg != null){
         out.write("<div class=\"alert\">");
@@ -65,9 +65,8 @@
         out.write("</div>");
       }
     %>
-  <input type="submit" name="decision" value="決定">
+  <input class="next-btn2" type="submit" name="decision" value="決定">
   </form>
-  <hr>
 </div>
 <%@include file="_footer.jsp"%>
 </body>

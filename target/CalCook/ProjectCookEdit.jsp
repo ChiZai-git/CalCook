@@ -19,6 +19,7 @@
 <script type="text/javascript" src="ProjectMenuChenge.js"></script>
 <link rel="stylesheet" href="header_footer.css">
 <link rel="stylesheet" href="MainStyle.css">
+  <link rel="stylesheet" href="TableStyle.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>PJ調理材料編集画面</title>
 </head>
@@ -76,7 +77,6 @@
 				}
 			%>
 		</table>
-		<hr>
 		<%
 		  if (!(errMsg.isEmpty()) && errMsg != null){
 		    out.write("<div class=\"alert\">");
@@ -99,7 +99,7 @@
 				out.write("<input type=\"hidden\" name=\"menuid\" value=\"" + menuInfoList.get(i).getMenuid() + "\">");
 				out.write("<h5><input type=\"text\" name=\"member\" value=\"" + eatMemberList.get(i) + "\">人前</h5>");
 				out.write("<input type=\"hidden\" name=\"dispMenuid\" value=\"" + menuInfoList.get(i).getMenuid() + "\">");
-				out.write("<input type=\"submit\" name=\"recalculation\" value=\"人数再計算\">");
+				out.write("<input class=\"next-btn3\" type=\"submit\" name=\"recalculation\" value=\"人数再計算\">");
 
 				out.write("<div style=\"width:300px;height:200px;overflow:auto;\">");
 				out.write("<table>");
@@ -120,8 +120,8 @@
 				}
 				out.write("</table>");
 				out.write("</div>");
-				out.write("<input type=\"submit\" name=\"initialize\" value=\"分量を初期化する\">");
-				out.write("<input type=\"submit\" name=\"save\" value=\"保存する\">");
+				out.write("<input class=\"next-btn3\" type=\"submit\" name=\"initialize\" value=\"分量を初期化する\">");
+				out.write("<input class=\"next-btn2\" type=\"submit\" name=\"save\" value=\"保存する\">");
 				out.write("</div>");
 				out.write("</form>");
 			}

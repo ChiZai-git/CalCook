@@ -82,6 +82,8 @@ public class ProjectCookEdit extends HttpServlet {
 			return;
 
 		} else if(view.equals("Purchase")){
+			int resultFlag = 9;
+			request.setAttribute("resultFlag", resultFlag);
 			request.setAttribute("errMsg", errMsg);
 			request.getRequestDispatcher("PurchaseOrderEdit.jsp").forward(request, response);
 			return;

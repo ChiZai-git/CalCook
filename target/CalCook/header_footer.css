@@ -41,9 +41,10 @@
 }
 
 #copy {
-	vertical-align: middle;
+	/* vertical-align: middle; */
 	color: #000;
-	font-size: 5px;
+	font-size: 1px;
+	float: left;
 }
 
 #black {

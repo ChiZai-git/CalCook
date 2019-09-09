@@ -1,7 +1,7 @@
-/************************************/
-/* CookSearch.jsp					*/
-/* 選択された料理名を表示する		*/
-/** ********************************* */
+/************************************
+/* CookSearch.jsp					*
+/* 選択された料理名を表示する			*
+/** *********************************/
 function SelectDisp1(cnt) {
 	var cooks = document.getElementsByClassName('cooks');
 
@@ -9,10 +9,10 @@ function SelectDisp1(cnt) {
 		cooks[i].style.display = (i === parseInt(cnt)) ? 'block' : 'none';
 	}
 }
+/************************************
+/* ProjectList.jsp					*
+/* 選択されたプロジェクト名を表示する		*
 /************************************/
-/* ProjectList.jsp					*/
-/* 選択されたプロジェクト名を表示する		*/
-/** ********************************* */
 function SelectDisp2(cnt) {
 	var projects = document.getElementsByClassName('projects');
 

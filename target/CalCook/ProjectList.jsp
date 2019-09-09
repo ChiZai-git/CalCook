@@ -12,8 +12,10 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+  <script type="text/javascript" src="SelectDisp.js"></script>
   <link rel="stylesheet" href="header_footer.css">
   <link rel="stylesheet" href="MainStyle.css">
+  <link rel="stylesheet" href="TableStyle.css">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>プロジェクト一覧画面</title>
 </head>
@@ -63,21 +65,30 @@
           out.write("<td><label for=\"project" + i + "\">" + projectList.get(i).getStartdate() + " 〜 "
             + projectList.get(i).getEnddate() + "</label></td>");
           out.write("<td><label for=\"project" + i + "\">" + projectList.get(i).getMember() + "</label></td>");
-          out.write("<td><input id=\"project" + i + "\" type=\"radio\" name=\"projectid\" value=\""
+          out.write("<td><input onclick=\"SelectDisp2('" + i + "')\" id=\"project" + i + "\" type=\"radio\" name=\"projectid\" value=\""
             + projectList.get(i).getProjectid() + "\"></td>");
           out.write("</tr>");
           }
         }
       %>
     </table>
-    <hr>
     <%if (!(errMsg.isEmpty()) && errMsg != null){
       out.write("<div class=\"alert\">");
       out.write(errMsg);
       out.write("</div>");
     }
     %>
-  <input type="submit" name="decision" value="決定">
+    <h4 class="float">選択したプロジェクト：</h4>
+    <%
+      for(int i = 0; i < projectList.size(); i++){
+        out.write("<div style=\"display:none\" class=\"projects\">");
+        out.write("<h3 class=\"float\">" + projectList.get(i).getProjectname() + "</h3>");
+        out.write("</div>");
+      }
+    %>
+  <div class="clear">
+    <input class="next-btn2" type="submit" name="decision" value="決定">
+  </div>
   </form>
 </div>
 <%@include file="_footer.jsp" %>

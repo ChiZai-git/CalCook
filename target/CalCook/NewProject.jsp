@@ -3,8 +3,6 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <% int member = (int)request.getAttribute("member"); %>
-<% String startday = (String)request.getAttribute("startday"); %>
-<% String endday = (String)request.getAttribute("endday"); %>
 <% String errMsg = (String)request.getAttribute("errMsg"); %>
 <!DOCTYPE html>
 <html>
@@ -37,19 +35,9 @@
     <input type="number" name="member" min="0" <% out.write("value=\"" + member + "\"");%>><br>
     <label for="startday">開始日：</label>
     <input type="date" name="startday"
-    <%
-      if (startday != "" || startday != null){
-        out.write("value=\"" + startday + "\"");
-      }
-    %>
     ><br>
     <label for="endday">終了日：</label>
     <input type="date" name="endday"
-    <%
-      if (startday != "" || endday != null){
-        out.write("value=\"" + endday + "\"");
-      }
-    %>
     ><br>
     <input type="hidden" name="view" value="CheckProject">
     <input type = "submit" value = "次へ">

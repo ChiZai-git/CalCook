@@ -216,10 +216,12 @@ public class PurchaseOrderOutput {
 				resultCode = 0;
 
 			} catch (IOException e) {
+				resultCode = 1;
 				System.out.println(e.toString());
 			}
 
 		} catch (Exception e) {
+			resultCode = 1;
 			System.out.println(e.toString());
 		}
 		return(resultCode);

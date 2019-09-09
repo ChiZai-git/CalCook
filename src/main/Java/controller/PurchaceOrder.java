@@ -27,11 +27,15 @@ public class PurchaceOrder extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
 		String errMsg = "";
+		int resultFlag;
 
 		PurchaseOrderOutput purchaseOrder = new PurchaseOrderOutput();
-		purchaseOrder.PurchaseOrder();
+		resultFlag = purchaseOrder.PurchaseOrder();
 
+		request.setAttribute("resultFlag", resultFlag);
 		request.setAttribute("errMsg", errMsg);
 		request.getRequestDispatcher("PurchaseOrderEdit.jsp").forward(request, response);
 		return;

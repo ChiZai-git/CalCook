@@ -1,14 +1,14 @@
 <!-- 画面ID：k02g04	発注書編集画面 -->
 <!-- 初期構築：2019/07/31 ChiZai Tagawa Yuji -->
 
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="dto.ProjectInfo" %>
 <%@ page import="dto.MenuInfo" %>
 <%@ page import="dto.ProjectCookDisp" %>
 <% ProjectInfo projectInfo = (ProjectInfo) session.getAttribute("projectInfo");%>
 <% ArrayList<ProjectCookDisp> projectCookDispList = (ArrayList<ProjectCookDisp>) session.getAttribute("projectCookDispList");%>
+<% int resultFlag = (int)request.getAttribute("resultFlag"); %>
 <% String errMsg = (String)request.getAttribute("errMsg"); %>
 <!DOCTYPE html>
 <html>
@@ -29,6 +29,19 @@
 <title>発注書編集画面</title>
 </head>
 <body>
+  <%
+    if(resultFlag == 1){
+      out.write("<script>");
+      out.write("alert('エラー！¥n発注書の出力に失敗しました。');");
+      out.write("</script>");
+    } else if(resultFlag == 0) {
+      out.write("<script>");
+      out.write("alert('デスクトップに発注書を出力しました。');");
+      out.write("</script>");
+    } else {
+      // 処理なし
+    }
+  %>
   <%@include file="_header.jsp"%>
   <div id="main">
     <form method="post" action="Main">
@@ -40,30 +53,6 @@
       <%out.write(projectInfo.getStartdate());%>〜<%out.write(projectInfo.getEnddate());%><br>
       <%out.write(String.valueOf(projectInfo.getMember()));%>人
     <hr>
-    <table id="menus">
-      <tr>
-        <th>料理名</th>
-        <th>人数</th>
-      </tr>
-      <%
-        if (projectCookDispList != null || projectCookDispList.size() == 0) {
-          for (int i = 0; i < projectCookDispList.size(); i++) {
-            if (i == 0) {
-              out.write("<tr>");
-              out.write("<td>" + projectCookDispList.get(i).getMenuname() + "</td>");
-              out.write("<td>" + projectCookDispList.get(i).getEatmember() + "</td>");
-              out.write("</tr>");
-            }
-            if (i >= 1 && (projectCookDispList.get(i - 1).getMenuid() != projectCookDispList.get(i).getMenuid())) {
-              out.write("<tr>");
-              out.write("<td>" + projectCookDispList.get(i).getMenuname() + "</td>");
-              out.write("<td>" + projectCookDispList.get(i).getEatmember() + "</td>");
-              out.write("</tr>");
-            }
-          }
-        }
-      %>
-    </table>
     <%
       if (!(errMsg.isEmpty()) && errMsg != null){
         out.write("<div class=\"alert\">");
@@ -74,10 +63,10 @@
     <form method="post" action="PurchaceOrder">
       <table>
         <tr>
-          <td>Check!</td>
-          <td>料理</td>
-          <td>材料</td>
-          <td>分量</td>
+          <th>Check!</th>
+          <th>料理</th>
+          <th>材料</th>
+          <th>分量</th>
         </tr>
         <%
           int cnt = 0;

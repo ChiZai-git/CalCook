@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import processing.IngredientInfoDivis;
 import processing.PurchaseOrderOutput;
 
 /**
@@ -28,12 +29,19 @@ public class PurchaceOrder extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		request.setCharacterEncoding("UTF-8");
+		String[] ingredientNames = request.getParameterValues("ingredientNames");
+
+		String[][] spritInfos = new String[ingredientNames.length][2];
+
+		IngredientInfoDivis infos = new IngredientInfoDivis();
+		spritInfos = infos.IngredientInfoDivision(ingredientNames);
 
 		String errMsg = "";
-		int resultFlag;
+		int resultFlag =0;
 
 		PurchaseOrderOutput purchaseOrder = new PurchaseOrderOutput();
-		resultFlag = purchaseOrder.PurchaseOrder();
+		resultFlag = purchaseOrder.PurchaseOrder(spritInfos);
 
 		request.setAttribute("resultFlag", resultFlag);
 		request.setAttribute("errMsg", errMsg);

@@ -82,7 +82,10 @@
                   out.write("<td><input type=\"checkbox\" id=\"check_" + cnt + "\" class=\"checkAll\"></td>");
                   out.write("<td colspan=\"3\">" + projectCookDispList.get(i).getMenuname() + "</td>");
               } else {
-                out.write("<td><input type=\"checkbox\" class=\"check_" + cnt + "\"></td>");
+                out.write("<td><input type=\"checkbox\" name=\"ingredientNames\" class=\"check_" + cnt + "\" value=\""
+                  + projectCookDispList.get(i).getIngredientname() + ","
+                  + projectCookDispList.get(i).getAmount()
+                  + projectCookDispList.get(i).getUnit() + "\"></td>");
                 out.write("<td></td>");
                 out.write("<td>" + projectCookDispList.get(i).getIngredientname() + "</td>");
                 out.write("<td>" + projectCookDispList.get(i).getAmount() + projectCookDispList.get(i).getUnit() + "</td>");

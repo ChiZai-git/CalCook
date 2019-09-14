@@ -11,13 +11,14 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class PurchaseOrderOutput {
-	public int PurchaseOrder() {
+	public int PurchaseOrder(String[][] ingredientInfos) {
 		// ワークブック
 		Workbook workBook = null;
 		// シート
@@ -81,6 +82,15 @@ public class PurchaseOrderOutput {
 			style_TblBody.setBorderLeft(BorderStyle.THIN);
 			style_TblBody.setBorderRight(BorderStyle.THIN);
 
+			// TBLボディ数量 書式
+			CellStyle style_TblBodyUnit = workBook.createCellStyle();
+			style_TblBodyUnit.setFont(font);
+			style_TblBodyUnit.setBorderTop(BorderStyle.THIN);
+			style_TblBodyUnit.setBorderBottom(BorderStyle.THIN);
+			style_TblBodyUnit.setBorderLeft(BorderStyle.THIN);
+			style_TblBodyUnit.setBorderRight(BorderStyle.THIN);
+			style_TblBodyUnit.setAlignment(HorizontalAlignment.RIGHT);
+
 			// ****** シート操作 ****** //
 
 			// 行指定
@@ -93,8 +103,8 @@ public class PurchaseOrderOutput {
 			// 列幅指定
 			sheet.setColumnWidth(0, 853);
 			sheet.setColumnWidth(1, 2389);
-			sheet.setColumnWidth(2, 6826);
-			sheet.setColumnWidth(3, 3669);
+			sheet.setColumnWidth(2, 5590);
+			sheet.setColumnWidth(3, 2560);
 			sheet.setColumnWidth(4, 8576);
 
 			// （空き行） [1行目]
@@ -154,47 +164,83 @@ public class PurchaseOrderOutput {
 			cell.setCellValue("備考");
 
 			// ボディ部 [8〜X行]
-			for (int i = 0; i < 15; i++) {
-				row = sheet.createRow(rowNum++);
-				cell = row.createCell(1);
-				cell.setCellStyle(style_TblBody);
+			if (ingredientInfos.length < 28) {
+				for (int i = 0; i < ingredientInfos.length; i++) {
+					row = sheet.createRow(rowNum++);
+					cell = row.createCell(1);
+					cell.setCellStyle(style_TblBody);
 
-				cell = row.createCell(2);
-				cell.setCellStyle(style_TblBody);
-				cell.setCellValue("a");
+					cell = row.createCell(2);
+					cell.setCellStyle(style_TblBody);
+					cell.setCellValue(ingredientInfos[i][0]);
 
-				cell = row.createCell(3);
-				cell.setCellStyle(style_TblBody);
-				cell.setCellValue("b");
+					cell = row.createCell(3);
+					cell.setCellStyle(style_TblBodyUnit);
+					cell.setCellValue(ingredientInfos[i][1]);
 
-				cell = row.createCell(4);
-				cell.setCellStyle(style_TblBody);
+					cell = row.createCell(4);
+					cell.setCellStyle(style_TblBody);
+				}
+				// ボディ部 [X〜(35-X)行]
+				for (int i = 0; i < 28 - ingredientInfos.length; i++) {
+					row = sheet.createRow(rowNum++);
+					cell = row.createCell(1);
+					cell.setCellStyle(style_TblBody);
+
+					cell = row.createCell(2);
+					cell.setCellStyle(style_TblBody);
+					cell.setCellValue("");
+
+					cell = row.createCell(3);
+					cell.setCellStyle(style_TblBodyUnit);
+					cell.setCellValue("");
+
+					cell = row.createCell(4);
+					cell.setCellStyle(style_TblBody);
+				}
+			} else {
+				for (int i = 0; i < ingredientInfos.length; i++) {
+					row = sheet.createRow(rowNum++);
+					cell = row.createCell(1);
+					cell.setCellStyle(style_TblBody);
+
+					cell = row.createCell(2);
+					cell.setCellStyle(style_TblBody);
+					cell.setCellValue(ingredientInfos[i][0]);
+
+					cell = row.createCell(3);
+					cell.setCellStyle(style_TblBodyUnit);
+					cell.setCellValue(ingredientInfos[i][1]);
+
+					cell = row.createCell(4);
+					cell.setCellStyle(style_TblBody);
+				}
 			}
 
-			// （空き行） [X + 1行目]
+			// （空き行） [36行目]
 			row = sheet.createRow(rowNum++);
 
-			// 末尾 [X + 2行目]
+			// 末尾 [37行目]
 			row = sheet.createRow(rowNum++);
-			cell = row.createCell(2);
+			cell = row.createCell(1);
 			cell.setCellStyle(style_Normal);
 			cell.setCellValue("国際ボランティア学生協会の　[氏 名]　　　　　　　と申します。");
 
-			// 末尾 [X + 3行目]
+			// 末尾 [38行目]
 			row = sheet.createRow(rowNum++);
-			cell = row.createCell(2);
+			cell = row.createCell(1);
 			cell.setCellStyle(style_Normal);
 			cell.setCellValue("食品の発注につきましては　[店 名]　　　　　　　 にお願いしようと思います。");
 
-			// 末尾 [X + 4行目]
+			// 末尾 [39行目]
 			row = sheet.createRow(rowNum++);
-			cell = row.createCell(2);
+			cell = row.createCell(1);
 			cell.setCellStyle(style_Normal);
 			cell.setCellValue("また、食材やその量に変更が出る可能性があり、その際はすぐに連絡させていただきます。");
 
-			// 末尾 [X + 5行目]
+			// 末尾 [40行目]
 			row = sheet.createRow(rowNum++);
-			cell = row.createCell(2);
+			cell = row.createCell(1);
 			cell.setCellStyle(style_Normal);
 			cell.setCellValue("お忙しいところお手数ですが、商品のご確認を宜しくお願い致します。");
 
